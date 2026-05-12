@@ -23,8 +23,8 @@ public class ParticipantRestController {
 		return new ResponseEntity<Collection<Participant>>(participants, HttpStatus.OK);
 	}
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getParticipant(@PathVariable("id") String login) {
+    @RequestMapping(value = "/{login}", method = RequestMethod.GET)
+    public ResponseEntity<?> getParticipant(@PathVariable("login") String login) {
         Participant participant = participantService.findByLogin(login);
         if (participant == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -43,8 +43,8 @@ public class ParticipantRestController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteParticipant(@PathVariable("id") String login) {
+    @RequestMapping(value = "/{login}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteParticipant(@PathVariable("login") String login) {
         Participant foundParticipant = participantService.findByLogin(login);
         if (foundParticipant == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);

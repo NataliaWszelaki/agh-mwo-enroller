@@ -5,9 +5,11 @@ import java.util.Collection;
 import com.company.enroller.model.Participant;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.company.enroller.model.Meeting;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Component("meetingService")
 public class MeetingService {

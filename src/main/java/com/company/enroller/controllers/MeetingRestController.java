@@ -18,7 +18,7 @@ public class MeetingRestController {
     MeetingService meetingService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<?> getMeetins() {
+    public ResponseEntity<?> getMeetings() {
         Collection<Meeting> meetings = meetingService.getAll();
         return new ResponseEntity<Collection<Meeting>>(meetings, HttpStatus.OK);
     }
@@ -43,7 +43,7 @@ public class MeetingRestController {
         return new ResponseEntity<>(meeting, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
         public ResponseEntity<?> deleteMeeting(@PathVariable("id") long id){
         Meeting foundMeeting = meetingService.findById(id);
         if (foundMeeting == null) {
@@ -53,7 +53,7 @@ public class MeetingRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateMeeting(@PathVariable("id") long id, @RequestBody Meeting meeting) {
         Meeting foundMeeting = meetingService.findById(id);
         if (foundMeeting == null) {
