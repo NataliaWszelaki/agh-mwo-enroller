@@ -34,17 +34,12 @@ public class MeetingRestController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<?> createMeeting(@RequestBody Meeting meeting) {
-        Meeting foundMeeting = meetingService.findById(meeting.getId());
-        if(foundMeeting != null) {
-            return new ResponseEntity("Unable to create. A meeting with id " + meeting.getId()
-                    + " already exist.", HttpStatus.CONFLICT);
-        }
         meetingService.addMeeting(meeting);
         return new ResponseEntity<>(meeting, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-        public ResponseEntity<?> deleteMeeting(@PathVariable("id") long id){
+    public ResponseEntity<?> deleteMeeting(@PathVariable("id") long id){
         Meeting foundMeeting = meetingService.findById(id);
         if (foundMeeting == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -59,7 +54,8 @@ public class MeetingRestController {
         if (foundMeeting == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        meeting.setId(id);
         meetingService.updateMeeting(meeting);
-        return new ResponseEntity<>("Meeting has been updated " + foundMeeting, HttpStatus.OK);
+        return new ResponseEntity<>("Meeting has been updated " + meeting.getTitle(), HttpStatus.OK);
     }
 }
