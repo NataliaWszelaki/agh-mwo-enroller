@@ -22,9 +22,7 @@ public class ParticipantRestController {
             @RequestParam(value = "key", defaultValue = "") String key,
             @RequestParam(value = "sortBy", defaultValue = "") String sortBy,
             @RequestParam(value = "sortOrder", defaultValue = "ASC") String sortOrder) {
-
 		Collection<Participant> participants = participantService.getAll(key, sortBy, sortOrder);
-
 		return new ResponseEntity<Collection<Participant>>(participants, HttpStatus.OK);
 	}
 
